@@ -1,0 +1,37 @@
+@echo off
+setlocal enabledelayedexpansion
+    
+
+echo.    8b           d8        888b      88        8b        d8        8b        d8 
+echo.    `8b         d8'        8888b     88         Y8,    ,8P          Y8,    ,8P  
+echo.     `8b       d8'         88 `8b    88          `8b  d8'            `8b  d8'   
+echo.      `8b     d8'          88  `8b   88            Y88P                Y88P     
+echo.       `8b   d8'           88   `8b  88            d88b                d88b     
+echo.        `8b d8'            88    `8b 88          ,8P  Y8,           ,8P  Y8,   
+echo.         `888'             88     `8888         d8'    `8b          d8'    `8b  
+echo.          `8'              88      `888        8P        Y8        8P        Y8 
+echo.
+echo.
+echo.                       https://github.com/vnxx-tools
+echo 
+echo.                          
+echo.                          discord.gg/trJVW8hc3c
+echo.
+echo.                           
+echo.                            made by @vnxx.lol
+echo.
+
+set /p webhook_url=Enter Discord Webhook URL: 
+
+set /p amount=Enter number of messages to send: 
+
+set /p delay=Enter delay between messages (in seconds): 
+
+for /l %%i in (1,1,%amount%) do (
+    echo Sending message %%i of %amount%...
+    powershell -Command "Invoke-RestMethod -Uri '%webhook_url%' -Method POST -ContentType 'application/json' -Body '{\"content\": \"@everyone WEBHOOK FUCKED BY VNXX\"}'"
+    timeout /t %delay% >nul
+)
+
+echo Done!
+pause
